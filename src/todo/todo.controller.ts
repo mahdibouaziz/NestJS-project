@@ -16,6 +16,7 @@ import { TodoDto } from './dto/todo.dto';
 import { Todo } from './entities/todo.entity';
 import { TodoService } from './todo.service';
 
+//@UseInterceptors(DurationnInterceptor)
 @Controller('todo')
 export class TodoController {
   constructor(private todoService: TodoService) {}
