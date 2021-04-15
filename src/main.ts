@@ -16,6 +16,7 @@ async function bootstrap() {
     origin: ['http://localhost:4200'],
   };
   app.enableCors(corsOptions);
+
   //it must be a middleware function
   app.use(LoggerFunctionalMiddleware);
   app.useGlobalInterceptors(new DurationnInterceptor());
