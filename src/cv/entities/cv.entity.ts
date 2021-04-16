@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { UserEntity } from 'src/user/entities/user.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { TimestampEntity } from './generics/timestamp.entity';
 
 @Entity('cv')
@@ -23,4 +24,9 @@ export class CvEntity extends TimestampEntity {
 
   @Column()
   job: string;
+
+  @ManyToOne((type) => UserEntity, (user) => user.cvs, {
+    nullable: true,
+  })
+  user: UserEntity;
 }

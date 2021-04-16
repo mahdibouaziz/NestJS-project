@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TodoModule } from './todo/todo.module';
 import { CvModule } from './cv/cv.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { CvModule } from './cv/cv.module';
       synchronize: true,
     }),
     CvModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
