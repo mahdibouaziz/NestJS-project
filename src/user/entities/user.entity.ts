@@ -32,6 +32,7 @@ export class UserEntity extends TimestampEntity {
   })
   role: string;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToMany((type) => CvEntity, (cv) => cv.user, {
     cascade: true,
     nullable: true,
