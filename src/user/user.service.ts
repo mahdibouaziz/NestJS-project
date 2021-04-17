@@ -9,12 +9,14 @@ import { UserSubscribeDto } from './dto/user-subscribe.dto';
 import { UserEntity } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { LoginCredentialsDto } from './dto/login-credentials.dto';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
+    private jwtService: JwtService,
   ) {}
 
   //Inscrire un utilisateur
@@ -61,6 +63,17 @@ export class UserService {
       throw new UnauthorizedException('Invalid Password');
     }
 
-    return user;
+    //Create the JWT Token
+    //the PAYLOAD
+    const payload = {
+      username: user.username,
+      email: user.email,
+      role: user.role,
+    };
+
+    //create the token
+    const jwt = await this.jwtService.sign(payload);
+
+    return { access_token: jwt };
   }
 }
